@@ -10,9 +10,12 @@ const Time = (props) => {
       <div className="jogadores">
         {props.jogadores.map((jogador) => (
           <Jogador
+            corDeFundo={props.corPrimaria}
+            key={jogador.nome}
             nome={jogador.nome}
             imagem={jogador.imagem}
             plataforma={jogador.plataforma}
+            nick={jogador.nick}
           />
         ))}
       </div>
