@@ -4,33 +4,27 @@ import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import { useState } from "react";
 
-const Formulario = () => {
-  const times = [
-    "COD Warzone",
-    "Apex Legends",
-    "Mario Kart 8",
-    "Overwatch",
-    "Fortnite",
-    "Splatoon 3",
-  ];
-
+const Formulario = (props) => {
   const [nome, setNome] = useState("");
   const [nick, setNick] = useState("");
-  const [console, setConsole] = useState("");
-  const [jogo, setJogo] = useState("");
+  const [plataforma, setPlataforma] = useState("");
   const [imagem, setImagem] = useState("");
-  const [time, setTime] = useState("");
+  const [jogo, setJogo] = useState("");
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
-    this.props.first.aoJogadorCadastrado({
+    props.aoJogadorCadastrado({
       nome,
       nick,
-      console,
-      jogo,
+      plataforma,
       imagem,
-      time,
+      jogo,
     });
+    setNome("");
+    setNick("");
+    setPlataforma("");
+    setImagem("");
+    setJogo("");
   };
 
   return (
@@ -53,19 +47,11 @@ const Formulario = () => {
         />
         <CampoTexto
           obrigatorio={true}
-          label="Console"
-          placeholder="Digite o seu console"
-          valor={console}
-          aoAlterado={(valor) => setConsole(valor)}
+          label="Plataforma"
+          placeholder="Digite a sua Plataforma"
+          valor={plataforma}
+          aoAlterado={(valor) => setPlataforma(valor)}
         />
-        <CampoTexto
-          obrigatorio={true}
-          label="Jogo"
-          placeholder="Digite o jogo que você está online"
-          valor={jogo}
-          aoAlterado={(valor) => setJogo(valor)}
-        />
-
         <CampoTexto
           label="Imagem"
           placeholder="Digite o seu endereço da imagem"
@@ -74,12 +60,12 @@ const Formulario = () => {
         />
         <ListaSuspensa
           obrigatorio={true}
-          label="Time"
-          itens={times}
-          valor={time}
-          aoAlterado={(valor) => setTime(valor)}
+          label="Jogo"
+          itens={props.times}
+          valor={jogo}
+          aoAlterado={(valor) => setJogo(valor)}
         />
-        <Botao texto="Criar Card" />
+        <Botao>Criar Card</Botao>
       </form>
     </section>
   );

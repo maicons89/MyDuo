@@ -40,13 +40,14 @@ function App() {
   const [jogadores, setJogadores] = useState([]);
 
   const aoNovoJogadorAdicionado = (jogador) => {
-    console.log(jogador);
     setJogadores([...jogadores, jogador]);
   };
+
   return (
     <div className="App">
       <Banner />
       <Formulario
+        times={times.map((time) => time.nome)}
         aoJogadorCadastrado={(jogador) => aoNovoJogadorAdicionado(jogador)}
       />
 
@@ -56,6 +57,7 @@ function App() {
           nome={time.nome}
           corPrimaria={time.corPrimaria}
           corSecundaria={time.corSecundaria}
+          jogadores={jogadores.filter((jogador) => jogador.jogo === time.nome)}
         />
       ))}
     </div>
